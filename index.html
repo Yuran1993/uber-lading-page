@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0, user-scalable=yes">
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<title>Uber</title>
+</head>
+
+<body>
+	<div class="color-background">
+		<div class="wrapper">
+      <div class="msg" arian-hidden="true">
+  			<button class="back">Back</button>
+  		</div>
+			<header>
+				<img src="images/logo.png" alt="Uber logo" class="logo">
+				<button type="button" name="cancel" class="cancel">cancel</button>
+			</header>
+			<article>
+				<h1>Never hail a taxi again!</h1>
+				<p>Get rides when you need them. Safe. Reliable pick-ups within minutes. From your mobile with Uber.</p>
+				<button type="button" class="cta" id="cta1">Count me in!</button>
+			</article>
+			<section>
+				<form action="" method="post">
+					<fieldset>
+						<legend>Account</legend>
+						<label for="email">Email</label>
+						<input required type="email" name="user-email" id="email" placeholder="E-mailaddress" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="blabla@live.nl">
+						<label for="password">Password</label>
+						<input required type="password" name="user-password" id="password" placeholder="Password" value="hallo123">
+						<label for="password2">Repeat Password</label>
+						<input required type="password" name="user-password2" id="password2" placeholder="Repeat Password" value="hallo123">
+					</fieldset>
+
+					<fieldset>
+						<legend>Profile</legend>
+						<label for="firstName">Name</label>
+						<input required type="text" name="first-name" id="firstName"placeholder="First Name" value="Yur">
+						<input required type="text" name="last-name" id="lastName" placeholder="Last Name" value="bosch">
+						<label for="phoneNumber">Phone number</label>
+						<div class="custom-select phone-ex">
+							<select required data-placeholder="Area Code" id="phone-ex">
+								<option default></option>
+								<option placeholder="0031">0031 (NL)</option>
+								<option placeholder="0031">0031 (NL)</option>
+							</select>
+						</div>
+						<input required type="text" name="user-phonenumber" id="phoneNumber" placeholder="Phone Number"  value="0000000000">
+						<label for="lang">Lanquage</label>
+						<div class="custom-select lanquage">
+							<select required data-placeholder="Lanquage" id="lanquage">
+								<option default></option>
+								<option placeholder="NL">Nederlands</option>
+								<option placeholder="EN">English</option>
+							</select>
+						</div>
+						<button type="submit" class="cta" id="cta2">Account aanmaken</button>
+					</fieldset>
+				</form>
+			</section>
+			<!-- <footer>
+				<a href="">Privacy Policy</a>
+			</footer> -->
+		</div>
+	</div>
+	<script type="text/javascript" src="js/custom-select.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+</body>
+
+</html>

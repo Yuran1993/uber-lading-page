@@ -1,0 +1,432 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+@import url("http://use.typekit.net/rqn2exo.css");
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+html {
+  color: white;
+  font-family: Ingra, sans-serif;
+  font-size: 100%;
+}
+
+body {
+  background-attachment: fixed;
+  background-image: url("../images/background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  overflow: hidden;
+}
+@media (min-width: 540px) {
+  body {
+    overflow: visible;
+  }
+}
+
+.color-background {
+  transition: background-color 0.5s ease-in-out;
+  background-color: rgba(34, 83, 120, 0.9);
+  padding: 0 1.5rem;
+}
+
+.wrapper {
+  position: relative;
+  clear: both;
+  margin: 0 auto;
+  width: 90%;
+  overflow: hidden;
+  font-size: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .wrapper {
+    overflow: visible;
+  }
+}
+
+.error-message {
+  transition: all 0.5s ease-in-out;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100vh);
+  opacity: 0;
+  background-color: #b4333c;
+  width: 100%;
+  color: white;
+}
+@media (min-width: 1024px) {
+  .error-message {
+    left: 50vw;
+    width: 50vw;
+  }
+}
+.error-message p {
+  margin: 0 auto;
+  padding: 10px 0;
+  width: 80%;
+  font-size: 1.2rem;
+}
+.error-message ul {
+  margin: 0 auto;
+  width: 80%;
+  font-size: 1rem;
+}
+.error-message ul li {
+  padding-bottom: 10px;
+  list-style-type: initial;
+  list-style-position: inside;
+}
+
+.msg {
+  display: none;
+  position: absolute;
+  top: 30vh;
+  z-index: 1;
+  font-size: 1rem;
+}
+@media (min-width: 540px) {
+  .msg {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .msg {
+    width: 60vw;
+  }
+}
+.msg .back {
+  margin-top: 20px;
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  text-decoration: underline;
+  color: white;
+  font-family: Ingra, sans-serif;
+  font-size: 1.2rem;
+}
+@media (min-width: 540px) {
+  .msg .back {
+    font-size: 1.5rem;
+  }
+}
+
+.cancel {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: -9px;
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  text-decoration: underline;
+  color: white;
+  font-family: Ingra, sans-serif;
+  font-size: 1.2rem;
+}
+@media (max-width: 320px) {
+  .cancel {
+    right: -8px;
+    font-size: 1rem;
+  }
+}
+
+button.error-message-x {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+  border-radius: 2px;
+  background: #941821;
+  padding: 10px 20px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+button.cta {
+  display: block;
+  margin: 1.5rem auto;
+  outline: none;
+  border: 0;
+  border-radius: 5px;
+  background-color: #c3c52e;
+  padding: 10px;
+  text-transform: uppercase;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+@media (max-width: 320px) {
+  button.cta {
+    font-size: 1.3rem;
+  }
+}
+@media (min-width: 540px) {
+  button#cta1 {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  button#cta2 {
+    margin: 1.5rem 0;
+  }
+}
+
+header .logo {
+  transition: transform 0.5s ease-in-out;
+  display: block;
+  margin: 0 auto;
+}
+@media (max-width: 320px) {
+  header .logo {
+    width: 150px;
+  }
+}
+
+article {
+  padding: 1.5rem 0;
+}
+@media (min-width: 1024px) {
+  article {
+    width: 30vw;
+  }
+}
+
+h1 {
+  padding-bottom: 1.5rem;
+  text-transform: uppercase;
+  line-height: 1.4;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+p {
+  line-height: 1.4;
+}
+@media (max-width: 320px) {
+  p {
+    font-size: 1.2rem;
+  }
+}
+
+section {
+  transition: all 0.5s ease-in-out;
+  transform: translateY(100vh);
+}
+@media (min-width: 540px) {
+  section {
+    transform: translateY(0);
+  }
+}
+@media (min-width: 1024px) {
+  section {
+    position: absolute;
+    top: 250px;
+    left: 45vw;
+    width: 40vw;
+  }
+}
+section form fieldset {
+  margin: 2rem 0;
+}
+section form fieldset legend {
+  position: relative;
+  margin: 1.5rem 0;
+}
+section form fieldset legend::after {
+  position: absolute;
+  top: 1.6rem;
+  left: 0;
+  background-color: white;
+  width: 90vw;
+  height: 2px;
+  content: "";
+}
+@media (min-width: 1024px) {
+  section form fieldset legend::after {
+    width: 40vw;
+  }
+}
+section form fieldset label {
+  display: block;
+  margin-left: 3px;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 200;
+}
+section form fieldset label[for=lang] {
+  margin-top: -43px;
+}
+section form fieldset input,
+section form fieldset select {
+  margin-bottom: 1rem;
+  border: 3px solid #225378;
+}
+section form fieldset input {
+  padding: 10px;
+  width: 90%;
+  font-size: 0.9rem;
+}
+section form fieldset input[name=user-phonenumber] {
+  position: relative;
+  top: -43px;
+  left: 115px;
+  width: calc(90% - 115px);
+}
+
+div.phone-ex {
+  width: 110px;
+}
+div.lanquage {
+  padding-right: 1rem;
+  width: 90%;
+}
+div.lanquage .select-selected {
+  width: 100%;
+}
+div.lanquage .select-items {
+  width: calc(100% + .2rem);
+}
+div.select-selected {
+  border: 3px solid #225378;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 200;
+}
+footer a {
+  color: white;
+}
+
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  font-family: Arial;
+  font-size: 0.9rem;
+}
+
+.custom-select select {
+  display: none;
+  /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: white;
+  height: 0.9rem;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 18px;
+  right: 12px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #225378 transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #225378 transparent;
+  top: 10px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,
+.select-selected {
+  color: #225378;
+  padding: 10px;
+  padding-top: 12px;
+  border-top: 3px solid #225378;
+  cursor: pointer;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: white;
+  border: 3px solid #225378;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+.select-items > div {
+  border-top: 2px solid #225378;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.same-as-selected,
+.select-items div:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/*# sourceMappingURL=style.css.map */

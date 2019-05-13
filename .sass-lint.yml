@@ -1,0 +1,26 @@
+options:
+  merge-default-rules: true
+files:
+
+rules:
+  no-ids: 0
+
+  property-sort-order:
+    - 1
+    -
+      order: 'concentric'
+
+  nesting-depth:
+    - 1
+    -
+      max-depth: 4
+
+  no-qualifying-elements:
+    - 1
+    -
+      allow-element-with-class: true
+
+  clean-import-paths:
+    - 1
+    -
+      leading-underscore: true

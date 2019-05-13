@@ -1,0 +1,319 @@
+// =================================================
+// 	Body & Wrappers
+// =================================================
+body {
+  background-attachment: fixed;
+  background-image: url('../images/background.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  overflow: hidden;
+
+  @include breakpoint(medium) {
+    overflow: visible;
+  }
+}
+
+.color-background {
+  @include transition(background-color);
+  background-color: map-get($colors, primary);
+  padding: 0 map-get($spaces, small);
+}
+
+.wrapper {
+  position: relative;
+  clear: both;
+  margin: 0 auto;
+  width: 90%;
+  overflow: hidden;
+  font-size: 1.5rem;
+  @include breakpoint(xlarge) {
+    overflow: visible;
+  }
+}
+
+// =================================================
+// 	Messages
+// =================================================
+.error-message {
+  @include transition(all);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100vh);
+  opacity: 0;
+  background-color: map-get($colors, error);
+  width: 100%;
+  color: map-get($colors, fontColor);
+
+  @include breakpoint(xlarge) {
+    left: 50vw;
+    width: 50vw;
+  }
+
+  p {
+    margin: 0 auto;
+    padding: 10px 0;
+    width: 80%;
+    font-size: 1.2rem;
+  }
+
+  ul {
+    margin: 0 auto;
+    width: 80%;
+    font-size: 1rem;
+
+    li {
+      padding-bottom: 10px;
+      list-style-type: initial;
+      list-style-position: inside;
+    }
+  }
+}
+
+.msg {
+  display: none;
+  position: absolute;
+  top: 30vh;
+  z-index: 1;
+  font-size: 1rem;
+
+  @include breakpoint(medium) {
+    font-size: 1.5rem;
+  }
+
+  @include breakpoint(xlarge) {
+    width: 60vw;
+  }
+
+  .back {
+    margin-top: 20px;
+    outline: none;
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    text-decoration: underline;
+    color: map-get($colors, fontColor);
+    font-family: $primair-font;
+    font-size: 1.2rem;
+
+    @include breakpoint(medium) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+// =================================================
+// 	Buttons
+// =================================================
+.cancel {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: -9px;
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  text-decoration: underline;
+  color: map-get($colors, fontColor);
+  font-family: $primair-font;
+  font-size: 1.2rem;
+  @include breakpoint(small) {
+    right: -8px;
+    font-size: 1rem;
+  }
+}
+
+button {
+  &.error-message-x {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+    border-radius: 2px;
+    background: map-get($colors, errorDark);
+    padding: 10px 20px;
+    color: map-get($colors, fontColor);
+    font-size: .9rem;
+    font-weight: bold;
+  }
+
+  &.cta {
+    display: block;
+    margin: map-get($spaces, small) auto;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    background-color: map-get($colors, contrast);
+    padding: 10px;
+    text-transform: uppercase;
+    color: map-get($colors, fontColor);
+    font-size: 1.5rem;
+    font-weight: 500;
+    @include breakpoint(small) {
+      font-size: 1.3rem;
+    }
+  }
+
+  &#cta1 {
+    @include breakpoint(medium) {
+      display: none;
+    }
+  }
+
+  &#cta2 {
+    @include breakpoint(large) {
+      margin: map-get($spaces, small) 0;
+    }
+  }
+}
+
+// =================================================
+// 	Dom Elements
+// =================================================
+header {
+  .logo {
+    @include transition(transform);
+    display: block;
+    margin: 0 auto;
+    @include breakpoint(small) {
+      width: 150px;
+    }
+  }
+}
+
+article {
+  padding: map-get($spaces, small) 0;
+
+  @include breakpoint(xlarge) {
+    width: 30vw;
+  }
+}
+
+//These need to stay separate, so that thay can influence all h1's and p's
+h1 {
+  padding-bottom: map-get($spaces, small);
+  text-transform: uppercase;
+  line-height: 1.4;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+p {
+  line-height: 1.4;
+
+  @include breakpoint(small) {
+    font-size: 1.2rem;
+  }
+}
+
+section {
+  @include transition(all);
+  transform: translateY(100vh);
+
+  @include breakpoint(medium) {
+    transform: translateY(0);
+  }
+
+  @include breakpoint(xlarge) {
+    position: absolute;
+    top: 250px;
+    left: 45vw;
+    width: 40vw;
+  }
+
+  // FORM
+  form {
+    fieldset {
+      margin: 2rem 0;
+
+      legend {
+        position: relative;
+        margin: 1.5rem 0;
+
+        &::after {
+          position: absolute;
+          top: 1.6rem;
+          left: 0;
+          background-color: map-get($colors, fontColor);
+          width: 90vw;
+          height: 2px;
+          content: '';
+
+          @include breakpoint(xlarge) {
+            width: 40vw;
+          }
+        }
+      }
+
+      label {
+        display: block;
+        margin-left: 3px;
+        padding-bottom: 5px;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        font-weight: 200;
+
+        &[for='lang'] {
+          margin-top: -43px;
+        }
+      }
+
+      input,
+      select {
+        margin-bottom: 1rem;
+        border: 3px solid map-get($colors, primaryDark);
+      }
+
+      input {
+        padding: 10px;
+        width: 90%;
+        font-size: .9rem;
+
+        &[name='user-phonenumber'] {
+          position: relative;
+          top: -43px;
+          left: 115px;
+          width: calc(90% - 115px);
+        }
+      }
+    }
+  }
+}
+
+// There are wrappers of select tags used for the costum selects on the page
+div {
+  &.phone-ex {
+    width: 110px;
+  }
+
+  &.lanquage {
+    padding-right: 1rem;
+    width: 90%;
+
+    .select-selected {
+      width: 100%;
+    }
+
+    .select-items {
+      width: calc(100% + .2rem);
+    }
+  }
+
+  &.select-selected {
+    border: 3px solid map-get($colors, primaryDark);
+  }
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 200;
+
+  a {
+    color: map-get($colors, fontColor);
+  }
+}
