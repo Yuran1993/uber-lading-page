@@ -13,7 +13,14 @@ const colors = {
 const domEl = {
   'bgColor' : document.getElementsByClassName('color-background')[0],
   'wrapper' : document.getElementsByClassName('wrapper')[0],
-  'msg' : document.getElementsByClassName('msg')[0]
+  'msg' : document.getElementsByClassName('msg')[0],
+  'body' : document.getElementsByTagName('body')[0],
+  'logo' : document.getElementsByClassName('logo')[0],
+  'article' : document.getElementsByTagName('article')[0],
+  'formWrapper' : document.getElementsByClassName('formWrapper')[0],
+  'inputs' : document.getElementsByTagName('input'),
+  'selects' : document.getElementsByTagName('select'),
+  'errorMsg' : document.getElementsByClassName('error-message')[0]
 }
 
 // Buttons
@@ -24,4 +31,10 @@ const buttons = {
   'back' : document.getElementsByClassName('back')[0]
 }
 
-export {colors, domEl, buttons};
+const breakPoints = {
+  'small' : 320,
+  'medium' : 540,
+  'large' : 1024
+}
+
+export {colors, domEl, buttons, breakPoints};

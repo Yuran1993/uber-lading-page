@@ -71,9 +71,8 @@ body {
   background-position: center;
   background-size: cover;
   height: 100vh;
-  overflow: hidden;
 }
-@media (min-width: 540px) {
+@media only screen and (min-width: 540px) {
   body {
     overflow: visible;
   }
@@ -83,6 +82,7 @@ body {
   transition: background-color 0.5s ease-in-out;
   background-color: rgba(34, 83, 120, 0.9);
   padding: 0 1.5rem;
+  overflow: hidden;
 }
 
 .wrapper {
@@ -93,7 +93,7 @@ body {
   overflow: hidden;
   font-size: 1.5rem;
 }
-@media (min-width: 1024px) {
+@media only screen and (min-width: 1024px) {
   .wrapper {
     overflow: visible;
   }
@@ -110,7 +110,7 @@ body {
   width: 100%;
   color: white;
 }
-@media (min-width: 1024px) {
+@media only screen and (min-width: 1024px) {
   .error-message {
     left: 50vw;
     width: 50vw;
@@ -140,12 +140,12 @@ body {
   z-index: 1;
   font-size: 1rem;
 }
-@media (min-width: 540px) {
+@media only screen and (min-width: 540px) {
   .msg {
     font-size: 1.5rem;
   }
 }
-@media (min-width: 1024px) {
+@media only screen and (min-width: 1024px) {
   .msg {
     width: 60vw;
   }
@@ -161,7 +161,7 @@ body {
   font-family: Ingra, sans-serif;
   font-size: 1.2rem;
 }
-@media (min-width: 540px) {
+@media only screen and (min-width: 540px) {
   .msg .back {
     font-size: 1.5rem;
   }
@@ -180,7 +180,7 @@ body {
   font-family: Ingra, sans-serif;
   font-size: 1.2rem;
 }
-@media (max-width: 320px) {
+@media only screen and (max-width: 320px) {
   .cancel {
     right: -8px;
     font-size: 1rem;
@@ -212,17 +212,17 @@ button.cta {
   font-size: 1.5rem;
   font-weight: 500;
 }
-@media (max-width: 320px) {
+@media only screen and (max-width: 320px) {
   button.cta {
     font-size: 1.3rem;
   }
 }
-@media (min-width: 540px) {
+@media only screen and (min-width: 540px) {
   button#cta1 {
     display: none;
   }
 }
-@media (min-width: 768px) {
+@media only screen and (min-width: 768px) {
   button#cta2 {
     margin: 1.5rem 0;
   }
@@ -233,7 +233,7 @@ header .logo {
   display: block;
   margin: 0 auto;
 }
-@media (max-width: 320px) {
+@media only screen and (max-width: 320px) {
   header .logo {
     width: 150px;
   }
@@ -242,7 +242,7 @@ header .logo {
 article {
   padding: 1.5rem 0;
 }
-@media (min-width: 1024px) {
+@media only screen and (min-width: 1024px) {
   article {
     width: 30vw;
   }
@@ -259,37 +259,37 @@ h1 {
 p {
   line-height: 1.4;
 }
-@media (max-width: 320px) {
+@media only screen and (max-width: 320px) {
   p {
     font-size: 1.2rem;
   }
 }
 
-section {
+.formWrapper {
   transition: all 0.5s ease-in-out;
   transform: translateY(100vh);
 }
-@media (min-width: 540px) {
-  section {
+@media only screen and (min-width: 540px) {
+  .formWrapper {
     transform: translateY(0);
   }
 }
-@media (min-width: 1024px) {
-  section {
+@media only screen and (min-width: 1024px) {
+  .formWrapper {
     position: absolute;
     top: 250px;
     left: 45vw;
     width: 40vw;
   }
 }
-section form fieldset {
+.formWrapper form fieldset {
   margin: 2rem 0;
 }
-section form fieldset legend {
+.formWrapper form fieldset legend {
   position: relative;
   margin: 1.5rem 0;
 }
-section form fieldset legend::after {
+.formWrapper form fieldset legend::after {
   position: absolute;
   top: 1.6rem;
   left: 0;
@@ -298,12 +298,12 @@ section form fieldset legend::after {
   height: 2px;
   content: "";
 }
-@media (min-width: 1024px) {
-  section form fieldset legend::after {
+@media only screen and (min-width: 1024px) {
+  .formWrapper form fieldset legend::after {
     width: 40vw;
   }
 }
-section form fieldset label {
+.formWrapper form fieldset label {
   display: block;
   margin-left: 3px;
   padding-bottom: 5px;
@@ -311,20 +311,20 @@ section form fieldset label {
   font-size: 1.2rem;
   font-weight: 200;
 }
-section form fieldset label[for=lang] {
+.formWrapper form fieldset label[for=lang] {
   margin-top: -43px;
 }
-section form fieldset input,
-section form fieldset select {
+.formWrapper form fieldset input,
+.formWrapper form fieldset select {
   margin-bottom: 1rem;
   border: 3px solid #225378;
 }
-section form fieldset input {
+.formWrapper form fieldset input {
   padding: 10px;
   width: 90%;
   font-size: 0.9rem;
 }
-section form fieldset input[name=user-phonenumber] {
+.formWrapper form fieldset input[name=user-phonenumber] {
   position: relative;
   top: -43px;
   left: 115px;

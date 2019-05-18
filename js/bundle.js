@@ -15,7 +15,14 @@ var uber = (function (exports) {
   const domEl = {
     'bgColor' : document.getElementsByClassName('color-background')[0],
     'wrapper' : document.getElementsByClassName('wrapper')[0],
-    'msg' : document.getElementsByClassName('msg')[0]
+    'msg' : document.getElementsByClassName('msg')[0],
+    'body' : document.getElementsByTagName('body')[0],
+    'logo' : document.getElementsByClassName('logo')[0],
+    'article' : document.getElementsByTagName('article')[0],
+    'formWrapper' : document.getElementsByClassName('formWrapper')[0],
+    'inputs' : document.getElementsByTagName('input'),
+    'selects' : document.getElementsByTagName('select'),
+    'errorMsg' : document.getElementsByClassName('error-message')[0]
   };
 
   // Buttons
@@ -26,13 +33,55 @@ var uber = (function (exports) {
     'back' : document.getElementsByClassName('back')[0]
   };
 
+  const breakPoints = {
+    'small' : 320,
+    'medium' : 540,
+    'large' : 1024
+  };
+
   /* =================================================
    Auto Functions
   ================================================*/
   // Makes sure that the background color is the same height as the body.
-  if (domEl.bgColor.offsetHeight < document.body.scrollHeight) {
-    domEl.bgColor.style.height = document.body.scrollHeight + 'px';
-  }
+
+  const screenResize = () => {
+    const allInViewport = $(domEl.logo).outerHeight() + $(domEl.article).outerHeight() + $(domEl.formWrapper).outerHeight();
+
+    if (window.innerWidth < 540 || window.innerHeight > allInViewport) {
+      domEl.bgColor.style.height = window.innerHeight + 'px';
+    } else {
+      domEl.bgColor.style.height = $(domEl.logo).outerHeight() + $(domEl.article).outerHeight() + $(domEl.formWrapper).outerHeight() + 30 + 'px';
+
+      // if (window.innerWidth > 921) {
+      //   domEl.bgColor.style.height = $(domEl.logo).outerHeight() + $(domEl.formWrapper).outerHeight() + 'px';
+      // } else {
+      //   domEl.bgColor.style.height = $(domEl.logo).outerHeight() + $(domEl.article).outerHeight() + $(domEl.formWrapper).outerHeight() + 30 + 'px';
+      // }
+    }
+  };
+
+  // const screenResize = () => {
+  //   if (window.innerHeight > $(domEl.bgColor).outerHeight()) {
+  //     if (window.innerWidth < window.outerHeight) {
+  //       domEl.bgColor.style.height = $(domEl.logo).outerHeight() + $(domEl.formWrapper).outerHeight() + 'px';
+  //     } else {
+  //       domEl.bgColor.style.height = window.innerHeight + 'px';
+  //     }
+  //   } else {
+  //     if (window.innerWidth > 921) {
+  //       domEl.bgColor.style.height = $(domEl.logo).outerHeight() + $(domEl.formWrapper).outerHeight() + 'px';
+  //     } else {
+  //       domEl.bgColor.style.height = $(domEl.logo).outerHeight() + $(domEl.article).outerHeight() + $(domEl.formWrapper).outerHeight() + 30 + 'px';
+  //     }
+  //   }
+  // }
+
+  screenResize();
+
+  window.onresize = () =>{
+    screenResize();
+    console.log('rezise');
+  };
 
   //Scrolls page up after reload
   if (performance.navigation.type == 1) {
@@ -41,67 +90,61 @@ var uber = (function (exports) {
     }, 300);
   }
 
+  //Sets page to the top
+  function scrollUp() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
   /* =================================================
    Dom Transform Function
   ================================================*/
   /** this function manipulates the dom elements.
-  *@param {string} elements: through these key-words is decided which element and in what way.
+  *@param {string} elements: through these key-words decides which elements get changed and in what way.
   */
   function transformDom(elements) {
-    const body = document.getElementsByTagName('body')[0];
-    const logo = document.getElementsByClassName('logo')[0];
-    const article = document.getElementsByTagName('article')[0];
-    const formWrapper = document.getElementsByTagName('section')[0];
-    const inputs = document.getElementsByTagName('input');
-    const selects = document.getElementsByTagName('select');
-    const errorMsg = document.getElementsByClassName('error-message')[0];
-
     // This removes the article and puts the background opacity to 1.
     if (elements === 'bgColor') {
       domEl.bgColor.style.backgroundColor = colors.primaryDark;
 
       setTimeout(function() {
-        article.style.display = 'none';
+        domEl.article.style.display = 'none';
       }, 150);
     }
 
     // This shows the form when cta1 is used (only for mobiel and smaller mobiles have different values then the other mobiles).
     if (elements === 'showForm') {
-      if (window.innerWidth <= 320) {
-        formWrapper.style.transform = 'translateY(-100px)';
-        logo.style.transform = 'translateY(-40px)  scale(.8)';
-        domEl.wrapper.style.height = domEl.wrapper.offsetHeight - 500 + 'px';
-      } else {
-        formWrapper.style.transform = 'translateY(-200px)';
-        logo.style.transform = 'translateY(-90px)  scale(.6)';
-        domEl.wrapper.style.height = domEl.wrapper.offsetHeight - 600 + 'px';
-      }
+      const formHeight = $(domEl.formWrapper).height() + $(domEl.logo).height()/2 + 'px';
+
+      domEl.formWrapper.style.transform = `translateY(-${$(domEl.logo).height()/3*2}px)`;
+      domEl.logo.style.transform = `translateY(-${$(domEl.logo).height()/4}px)  scale(.7)`;
+      domEl.bgColor.style.height = formHeight;
+
       transformDom('bgColor');
-      body.style.overflow = 'visible';
       buttons.cancel.style.display = 'block';
     }
 
     // This removes the form, changes the bgcolor to opacity .9, empties out all the input and select tags and removes the error message and error borders.
     if (elements === 'cancelForm') {
-      body.style.overflow = 'hidden';
+      domEl.body.style.overflow = 'hidden';
       domEl.bgColor.style.backgroundColor = colors.primary;
       domEl.wrapper.style.height = '';
-      formWrapper.style.transform = 'translateY(100vh)';
-      logo.style.transform = 'translateY(0)  scale(1)';
+      domEl.formWrapper.style.transform = 'translateY(100vh)';
+      domEl.logo.style.transform = 'translateY(0)  scale(1)';
       buttons.cancel.style.display = 'none';
 
-      for (let i = 0; i < inputs.length; i++) {
-        inputs[i].value = '';
-        inputs[i].style.borderColor = colors.primaryDark;
+      for (let i = 0; i < domEl.inputs.length; i++) {
+        domEl.inputs[i].value = '';
+        domEl.inputs[i].style.borderColor = colors.primaryDark;
       }
 
-      for (let i = 0; i < selects.length; i++) {
-        selects[i].value = '';
-        selects[i].nextElementSibling.innerHTML = '';
-        selects[i].nextElementSibling.style.borderColor = colors.primaryDark;
+      for (let i = 0; i < domEl.selects.length; i++) {
+        domEl.selects[i].value = '';
+        domEl.selects[i].nextElementSibling.innerHTML = '';
+        domEl.selects[i].nextElementSibling.style.borderColor = colors.primaryDark;
       }
 
-      if (errorMsg) {
+      if (domEl.errorMsg) {
         domEl.wrapper.removeChild(errorMsg);
       }
     }
@@ -110,7 +153,7 @@ var uber = (function (exports) {
     if (elements === 'cancel') {
       transformDom('cancelForm');
       setTimeout(function() {
-        article.style.display = 'block';
+        domEl.article.style.display = 'block';
       }, 300);
     }
 
@@ -118,8 +161,8 @@ var uber = (function (exports) {
     if (elements === 'formUp') {
       if (window.innerWidth > 540) {
         setTimeout(function() {
-          formWrapper.style.transform = 'translateY(0)';
-          body.style.overflow = 'visible';
+          domEl.formWrapper.style.transform = 'translateY(0)';
+          domEl.body.style.overflow = 'visible';
         }, 250);
       }
     }
@@ -129,44 +172,42 @@ var uber = (function (exports) {
    Form Validation Function
   ================================================*/
   function validate() {
-    const inputs = document.getElementsByTagName('input');
-    const selects = document.getElementsByTagName('select');
     const errorLst = [];
     let formCor = true;
 
     // These are the input tags.
-    for (let i = 0; i < inputs.length; i++) {
-      const input = inputs[i];
+    for (let i = 0; i < domEl.inputs.length; i++) {
+      const input = domEl.inputs[i];
 
-      if (inputs[i].id === 'email') {
+      if (input.id === 'email') {
         /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input.value) ? inputCor(input) : inputIncor(input);
       }
 
-      if (inputs[i].id === 'password') {
+      if (input.id === 'password') {
         input.value.length >= 8 ? inputCor(input) : inputIncor(input);
       }
 
-      if (inputs[i].id === 'password2') {
+      if (input.id === 'password2') {
         const password = document.getElementById('password').value;
 
         input.value === password && input.value.length >= 8 ? inputCor(input) : inputIncor(input);
       }
 
-      if (inputs[i].id === 'firstName' || inputs[i].id === 'lastName') {
-        if (inputs[i].id === 'firstName') {
-          inputs[i].value = inputs[i].value.charAt(0).toUpperCase() + inputs[i].value.slice(1);
+      if (input.id === 'firstName' || input.id === 'lastName') {
+        if (input.id === 'firstName') {
+          input.value = input.value.charAt(0).toUpperCase() + input.value.slice(1);
         }
         input.value.length >= 2 && /^([^0-9]*)$/.test(input.value) ? inputCor(input) : inputIncor(input);
       }
 
-      if (inputs[i].id === 'phoneNumber') {
+      if (input.id === 'phoneNumber') {
         input.value.length >= 10 && /^[0-9]*$/.test(input.value) ? inputCor(input) : inputIncor(input);
       }
     }
 
     // These are the select tags.
-    for (let i = 0; i < selects.length; i++) {
-      const select = selects[i];
+    for (let i = 0; i < domEl.selects.length; i++) {
+      const select = domEl.selects[i];
       const selectWrapper = select.nextElementSibling;
 
       select.value === '' ? inputIncor(selectWrapper) : inputCor(selectWrapper);
@@ -206,6 +247,9 @@ var uber = (function (exports) {
     }
   }
 
+  /* =================================================
+   Create Error Message
+  ================================================*/
   /** This function creates the error message, when there are input fields incorrect.
   *@param {Array} errorLst: a list of incorrect input fields.
   */
@@ -248,12 +292,6 @@ var uber = (function (exports) {
       errorMsg.style.opacity = '1';
       errorMsg.style.transform = 'translateY(0)';
     }, 100);
-  }
-
-  /** Sets page to the top */
-  function scrollUp() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
   }
 
   var functions = /*#__PURE__*/Object.freeze({
@@ -322,8 +360,7 @@ var uber = (function (exports) {
 
   });
 
-  console.log(domEl.bgColor);
-
+  exports.breakPoints = breakPoints;
   exports.buttons = buttons;
   exports.colors = colors;
   exports.domEl = domEl;

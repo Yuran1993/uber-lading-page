@@ -8,7 +8,6 @@ body {
   background-position: center;
   background-size: cover;
   height: 100vh;
-  overflow: hidden;
 
   @include breakpoint(medium) {
     overflow: visible;
@@ -19,6 +18,7 @@ body {
   @include transition(background-color);
   background-color: map-get($colors, primary);
   padding: 0 map-get($spaces, small);
+  overflow: hidden;
 }
 
 .wrapper {
@@ -208,7 +208,7 @@ p {
   }
 }
 
-section {
+.formWrapper {
   @include transition(all);
   transform: translateY(100vh);
 
